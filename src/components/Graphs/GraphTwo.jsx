@@ -80,6 +80,7 @@ const GraphTwo = () => {
           <Legend />
           <Line type="monotone" dataKey="uv" stroke="#FF5733" />
           <Line type="monotone" dataKey="pv" stroke="#3398FF" />
+          {/* <Area dataKey='amt' fill='red' /> */}
           <Line type="monotone" dataKey="amt" stroke="#F979ED" />
           <Line type="monotone" dataKey="cnt" stroke="#33FFA1" />
           {/* <Scatter dataKey="cnt" fill="red" /> */}

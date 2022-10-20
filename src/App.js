@@ -1,6 +1,7 @@
 import "./App.css";
 import Header from "./components/Global Components/Header";
 import Sidebar from "./components/Global Components/Sidebar";
+import CustomSpreadsheetOne from "./components/Spreadsheets/CustomSpreadsheetOne";
 import SpreadsheetOne from "./components/Spreadsheets/SpreadsheetOne";
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
       </div>
       <div className="w-[86%] md:w-[92%] lg:w-[96%] ml-auto">
         <Header />
-        <SpreadsheetOne />
+        {/* <SpreadsheetOne /> */}
+        <CustomSpreadsheetOne />
       </div>
     </div>
   );

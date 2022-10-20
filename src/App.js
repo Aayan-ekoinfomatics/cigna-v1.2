@@ -4,6 +4,7 @@ import Sidebar from "./components/Global Components/Sidebar";
 import CustomSpreadsheetOne from "./components/Spreadsheets/CustomSpreadsheetOne";
 import SpreadsheetOne from "./components/Spreadsheets/SpreadsheetOne";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Footer from "./components/Global Components/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/' element={<CustomSpreadsheetOne />} />
             <Route path='/report-2' element={<SpreadsheetOne />} />
           </Routes>
+          <Footer />
         </div>
       </div>
     </Router>

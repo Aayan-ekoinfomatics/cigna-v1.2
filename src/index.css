@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
 .SpreadsheetGrid {
   /* border: 1px solid rgba(0, 0, 0, 0.15) !important */
   /* -webkit-box-shadow: 0px 0px 127px -43px rgba(117,117,117,1) !important;
@@ -21,9 +25,9 @@ border: 1px solid red;
 }
 
 .SpreadsheetGrid__headCell {
-    background-color: rgb(222, 222, 252) !important;
+    background-color: #2a63ffb4 !important;
   /* background-color: rgb(108, 207, 108) !important; */
-  color: rgb(46, 46, 46) !important;
+  color: rgb(255, 255, 255) !important;
   font-weight: 700 !important;
   display: flex !important;
   justify-content: center !important;
@@ -34,7 +38,7 @@ border: 1px solid red;
 
 .SpreadsheetGrid__cell {
   border-collapse: collapse !important;
-
+  text-align: center;
   border: 1px solid rgba(0, 0, 0, 0.15) !important; 
    
 }
@@ -42,3 +46,4 @@ border: 1px solid red;
 .SpreadsheetGrid__cell_active {
   border:1px solid  rgb(85, 85, 255) !important;
 }
+

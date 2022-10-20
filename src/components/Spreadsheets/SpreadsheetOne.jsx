@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Input, Select } from "react-spreadsheet-grid";
 import "../../index.css";
+import GraphFour from "../Graphs/GraphFour";
 import GraphOne from "../Graphs/GraphOne";
 import GraphTwo from "../Graphs/GraphTwo";
 
@@ -288,10 +289,10 @@ const SpreadsheetOne = () => {
         />
       </div>
       <div className="w-full grid grid-rows-2 grid-cols-2 gap-5 md:gap-10 lg:gap-14 mt-20">
-        {/* <GraphOne /> */}
         <GraphTwo />
         <GraphTwo />
-        {/* <GraphOne /> */}
+        <GraphFour />
+        <GraphFour />
       </div>
     </div>
   );

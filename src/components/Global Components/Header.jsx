@@ -15,8 +15,8 @@ const Header = () => {
 
 
   return (
-    <div className="w-full h-[10vh] flex justify-between">
-      <div className="w-[20%]  flex justify-start items-center">
+    <div className="w-full h-[10vh] flex justify-between mb-4">
+      <div className="w-[20%] flex justify-start items-center">
         <img src={logo} className='w-[45%]' />
       </div>
       <div className="w-[20%] flex justify-center items-end">

@@ -3,20 +3,29 @@ import Header from "./components/Global Components/Header";
 import Sidebar from "./components/Global Components/Sidebar";
 import CustomSpreadsheetOne from "./components/Spreadsheets/CustomSpreadsheetOne";
 import SpreadsheetOne from "./components/Spreadsheets/SpreadsheetOne";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="w-full">
-      <div className="absolute top-0 left-0 h-fit">
-        <Sidebar />
-      </div>
-      <div className="w-[86%] md:w-[92%] lg:w-[96%] ml-auto">
+    <Router>
+      <div className="w-full">
+        <div className="absolute top-0 left-0 h-fit">
+          <Sidebar />
+        </div>
+        <div className="w-[86%] md:w-[92%] lg:w-[96%] ml-auto">
         <Header />
-        {/* <SpreadsheetOne /> */}
-        <CustomSpreadsheetOne />
+          <Routes>
+            <Route path='/' element={<CustomSpreadsheetOne />} />
+            <Route path='/report-2' element={<SpreadsheetOne />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
 export default App;
+
+
+
+

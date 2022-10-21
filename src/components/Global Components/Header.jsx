@@ -6,8 +6,8 @@ import apiDecileDataAtom from '../../atoms/apiDecileDataAtom';
 const Header = () => {
 
   const staticDataJson = [
-    {"name": "Data 1"},
-    {"name": "Data 2"}
+    {"name": "Choice 1A"},
+    {"name": "Choice 1C"}
 ]
 
   const [dropdownToggle, setDropdownToggle] = useState(true);

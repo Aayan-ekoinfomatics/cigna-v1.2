@@ -290,9 +290,9 @@ const SpreadsheetOne = () => {
       </div>
       <div className="w-full grid grid-rows-2 grid-cols-2 gap-5 md:gap-10 lg:gap-14 mt-20">
         <GraphTwo />
+        <GraphFour />
+        <GraphFour />
         <GraphTwo />
-        <GraphFour />
-        <GraphFour />
       </div>
     </div>
   );

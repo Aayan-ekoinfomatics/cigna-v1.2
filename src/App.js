@@ -5,29 +5,29 @@ import CustomSpreadsheetOne from "./components/Spreadsheets/CustomSpreadsheetOne
 import SpreadsheetOne from "./components/Spreadsheets/SpreadsheetOne";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/Global Components/Footer";
+import { RecoilRoot } from "recoil";
+
 
 function App() {
   return (
-    <Router>
-      <div className="w-full">
-        <div className="absolute top-0 left-0 h-fit">
-          <Sidebar />
+    <RecoilRoot>
+      <Router>
+        <div className="w-full">
+          <div className="absolute top-0 left-0 h-fit">
+            <Sidebar />
+          </div>
+          <div className="w-[86%] md:w-[92%] lg:w-[96%] ml-auto">
+            <Header />
+            <Routes>
+              <Route path="/" element={<CustomSpreadsheetOne />} />
+              <Route path="/report-2" element={<SpreadsheetOne />} />
+            </Routes>
+            {/* <Footer /> */}
+          </div>
         </div>
-        <div className="w-[86%] md:w-[92%] lg:w-[96%] ml-auto">
-        <Header />
-          <Routes>
-            <Route path='/' element={<CustomSpreadsheetOne />} />
-            <Route path='/report-2' element={<SpreadsheetOne />} />
-          </Routes>
-          <Footer />
-        </div>
-      </div>
-    </Router>
+      </Router>
+      </RecoilRoot>
   );
 }
 
 export default App;
-
-
-
-

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import apiDataAtom from '../../atoms/apiDataAtom';
 import {
   ComposedChart,
   Line,
@@ -13,6 +14,8 @@ import {
   Scatter,
   ResponsiveContainer
 } from "recharts";
+import { useRecoilState } from 'recoil';
+import apiDecileDataAtom from '../../atoms/apiDecileDataAtom';
 
 // const data = [
 //   {
@@ -63,24 +66,27 @@ const GraphTwo = () => {
 
   const [data1, setData1] = useState()
 
-  const baseURL = 'http://192.168.1.4:8000/'
+  const [ apiGraphData, setApiGraphData ] = useRecoilState(apiDataAtom);
+  const [ apiDecileData, setApiDecileData ] = useRecoilState(apiDecileDataAtom);
 
-  useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setData1(response.data.graph)
-    })
-  }, [])
+  // const baseURL = 'http://192.168.1.4:8000/'
+
+  // useEffect(() => {
+  //   axios.get(baseURL).then((response) => {
+  //     setData1(response.data.graph)
+  //   })
+  // }, [])
 
 
 
   return (
     <div className='border-2 border-gray-300 rounded-lg pt-3 w-full pr-3'>
-      <h1 className='text-center pb-2 text-xl text-gray-400'>LIFT CURVE FOR CHOICE 1A MODEL</h1>
+      <h1 className='text-center pb-2 text-xl text-gray-400'>LIFT CURVE FOR {apiGraphData?.apiData?.data[apiDecileData].header_name} MODEL</h1>
       <ResponsiveContainer width='100%' height={300}>
         <ComposedChart
           //   width={700}
           //   height={300}
-          data={data1}
+          data={apiGraphData?.apiData?.data[apiDecileData]?.graph}
           margin={{
             top: 20,
             right: 20,

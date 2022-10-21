@@ -4,6 +4,9 @@ import GraphFour from "../Graphs/GraphFour";
 import GraphOne from "../Graphs/GraphOne";
 import GraphThree from "../Graphs/GraphThree";
 import GraphTwo from "../Graphs/GraphTwo";
+import apiDataAtom from "../../atoms/apiDataAtom";
+import apiDecileDataAtom from "../../atoms/apiDecileDataAtom";
+import { useRecoilState } from "recoil";
 
 // const rows = [
 //   {
@@ -152,22 +155,43 @@ import GraphTwo from "../Graphs/GraphTwo";
 // ];
 
 const CustomSpreadsheetOne = () => {
+  const [data1, setData1] = useState();
+  const [apiSpreadsheetData, setApiSpreadsheetData] =
+    useRecoilState(apiDataAtom);
+  // const [apiDecileData, setApiDecileData] = useRecoilState(apiDecileDataAtom);
+  const [ apiDecileData, setApiDecileData ] = useRecoilState(apiDecileDataAtom);
 
-  const [data1, setData1] = useState()
+  const baseURL = "http://192.168.1.4:8000/";
 
-  const baseURL = 'http://192.168.1.4:8000/'
+  // useEffect(() => {
+  //   axios.get(baseURL).then((response) => {
+  //     setData1(response.data.data)
+  //   })
+  //   console.log(data1)
+  // }, [])
 
   useEffect(() => {
     axios.get(baseURL).then((response) => {
-      setData1(response.data.data)
-    })
-  }, [])
+      setApiSpreadsheetData({ apiData: response.data });
+    });
+    // console.log(apiSpreadsheetData?.apiData?.data)
+  }, []);
 
+  useEffect(() => {
+    console.log(apiSpreadsheetData?.apiData?.data[0]?.data[0]?.Choice1A_Decile);
+  }, [apiSpreadsheetData]);
 
   return (
     <div>
-      <div className="p-4 -mb-[8px] w-full">
+      <div className="grid grid-cols-2 w-[98%] mx-auto gap-2">
+        <GraphThree />
+        <GraphOne />
+        <GraphTwo />
+        <GraphFour />
+      </div>
+      <div className="p-4  w-full">
         <div className="border-2 border-gray-300 rounded-lg p-1">
+          {/* Grid Headings */}
           <div className="grid grid-cols-10 grid-rows-1">
             <div className="border border-gray-300 rounded-tl-md bg-[#2a63ffb4] text-white text-center p-2 text-[16px] flex justify-center items-center font-bold">
               Choice1A Decile
@@ -179,82 +203,113 @@ const CustomSpreadsheetOne = () => {
               No of Control
             </div>
             <div className="border border-gray-300 bg-[#2a63ffb4] text-white text-center p-2 text-[16px] flex justify-center items-center font-bold break-word">
-            No of prospect Test
+              No of prospect Test
             </div>
             <div className="border border-gray-300 bg-[#2a63ffb4] text-white text-center p-2 text-[16px] flex justify-center items-center font-bold break-word">
-            No of prospect Control
+              No of prospect Control
             </div>
             <div className="border border-gray-300 bg-[#2a63ffb4] text-white text-center p-2 text-[16px] flex justify-center items-center font-bold break-word">
-            Value counts
+              Value counts
             </div>
             <div className="border border-gray-300 bg-[#2a63ffb4] text-white text-center p-2 text-[16px] flex justify-center items-center font-bold break-word">
-            Total sum of new coustmer match
+              Total sum of new coustmer match
             </div>
             <div className="border border-gray-300 bg-[#2a63ffb4] text-white text-center p-2 text-[16px] flex justify-center items-center font-bold break-word">
-            Conversion rate test
+              Conversion rate test
             </div>
             <div className="border border-gray-300 bg-[#2a63ffb4] text-white text-center p-2 text-[16px] flex justify-center items-center font-bold break-word">
-            Conversion rate control
+              Conversion rate control
             </div>
             <div className="border border-gray-300 bg-[#2a63ffb4] text-white text-center p-2 text-[16px] flex justify-center items-center font-bold break-word">
-            Lift
+              Lift
             </div>
             {/* <div className="border border-gray-300 rounded-tr-md bg-[#2a63ffb4] text-white text-center p-2 text-[14px] font-bold">
               Continent
             </div> */}
           </div>
-          <div className=" grid grid-cols-10">
-            { data1 ? 
-            data1?.map((data) => (
-              // <div>
-              <>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] font- text-center p-2">
-                  {data?.Choice1A_Decile}
+
+          {/* Grid Body */}
+          <div
+            className={`${
+              apiSpreadsheetData
+                ? "grid grid-cols-10"
+                : "flex justify-center items-center"
+            }`}
+          >
+            {
+              // data1 ?
+              // data1?
+              apiSpreadsheetData ? (
+                apiSpreadsheetData?.apiData?.data[apiDecileData]?.data?.map((data, i) => {
+                  return (
+                    <>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] font- text-center p-2">
+                        {
+                          data
+                            ?.Choice1A_Decile
+                        }
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {data?.no_of_Test}
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {
+                          data
+                            ?.no_of_Control
+                        }
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {
+                          data
+                            ?.no_of_prospect_Test
+                        }
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {
+                          data
+                            ?.no_of_prospect_Control
+                        }
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {
+                          data
+                            ?.Value_counts
+                        }
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {
+                          data
+                            ?.Total_sum_of_new_coustmer_match
+                        }
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {
+                          data
+                            ?.Conversion_rate_test
+                        }
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {
+                          data
+                            ?.Conversion_rate_control
+                        }
+                      </div>
+                      <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
+                        {data?.Lift}
+                      </div>
+                    </>
+                  );
+                })
+              ) : (
+                <div className="w-full h-[25rem] flex items-center justify-center">
+                  <h1>Loading...</h1>
                 </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.no_of_Test}
-                </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.no_of_Control}
-                </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.no_of_prospect_Test}
-                </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.no_of_prospect_Control}
-                </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.Value_counts}
-                </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.Total_sum_of_new_coustmer_match}
-                </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.Conversion_rate_test}
-                </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.Conversion_rate_control}
-                </div>
-                <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data?.Lift}
-                </div>
-                {/* <div className="border border-gray-200 text-[14px] py-3 text-[#3a3a3a] text-center p-2">
-                  {data.continent}
-                </div> */}
-              </>
-              // </div>
-            ))
-            : 
-            'Loading...'}
+              )
+            }
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 w-[98%] mx-auto gap-2 mb-4">
-      <GraphThree />
-      <GraphOne />
-      <GraphTwo />
-      <GraphFour />
-      </div>
+
     </div>
   );
 };
